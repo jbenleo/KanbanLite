@@ -6,9 +6,10 @@ import java.util.List;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import config.Configuration;
-import config.DBconfig;
-import config.View;
+import controller.ConfigIO;
+import model.config.Configuration;
+import model.config.DBconfig;
+import model.config.View;
 
 public class Main {
 
@@ -47,8 +48,8 @@ public class Main {
       databases.add(conf);
 
       config.setDatabases(databases);
-      config.setConfiguration(configSource);
-      config = Configuration.getConfiguration(configSource);
+      ConfigIO.setConfiguration(config, configSource);
+      config = ConfigIO.getConfiguration(configSource);
       
    }
 

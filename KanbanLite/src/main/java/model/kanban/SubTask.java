@@ -1,4 +1,4 @@
-package model;
+package model.kanban;
 
 public class SubTask {
    private String description;

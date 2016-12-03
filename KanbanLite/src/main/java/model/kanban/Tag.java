@@ -1,4 +1,4 @@
-package model;
+package model.kanban;
 
 public class Tag {
    private String name;

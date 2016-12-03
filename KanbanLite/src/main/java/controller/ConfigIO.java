@@ -1,24 +1,15 @@
-package config;
+package controller;
 
 import java.io.File;
-import java.util.List;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementWrapper;
-import javax.xml.bind.annotation.XmlRootElement;
-/**
- * Configuration
- * This class follows the Singleton patter to use the same configuration for all the 
- * process 
- * */
-@XmlRootElement
-public class Configuration {
 
-   private List<DBconfig> databases;
+import model.config.Configuration;
+
+public class ConfigIO {
    
    public static Configuration getConfiguration(String file) {
 
@@ -37,7 +28,7 @@ public class Configuration {
       return config;
    }
    
-   public void setConfiguration(String file){
+   public static void setConfiguration(Configuration config, String file){
       try {
 
          JAXBContext jaxbContext = JAXBContext.newInstance(Configuration.class);
@@ -46,22 +37,11 @@ public class Configuration {
          // output pretty printed
          jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 
-         jaxbMarshaller.marshal(this, new File(file));
-         jaxbMarshaller.marshal(this, System.out);
+         jaxbMarshaller.marshal(config, new File(file));
+         jaxbMarshaller.marshal(config, System.out);
 
       } catch (JAXBException e) {
          e.printStackTrace();
       }
    }
-   
-   @XmlElementWrapper
-   @XmlElement (name = "database", required = true)
-   public List<DBconfig> getDatabases() {
-      return databases;
-   }
-   
-   
-   public void setDatabases(List<DBconfig> databases) {
-      this.databases = databases;
-   }   
 }

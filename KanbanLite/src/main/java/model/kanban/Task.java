@@ -1,4 +1,4 @@
-package model;
+package model.kanban;
 
 import java.util.ArrayList;
 import java.util.Date;

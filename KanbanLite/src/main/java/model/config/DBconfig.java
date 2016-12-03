@@ -1,4 +1,4 @@
-package config;
+package model.config;
 
 import java.util.List;
 
