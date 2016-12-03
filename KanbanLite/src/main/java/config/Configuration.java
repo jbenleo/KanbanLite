@@ -8,6 +8,7 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 /**
  * Configuration
@@ -16,7 +17,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * */
 @XmlRootElement
 public class Configuration {
-   
+
    private List<DBconfig> databases;
    
    public static Configuration getConfiguration(String file) {
@@ -30,6 +31,8 @@ public class Configuration {
       } catch (JAXBException e) {
          // TODO Auto-generated catch block
          e.printStackTrace();
+      } catch (Exception e){
+         System.out.println("No se encuentra el fichero");
       }
       return config;
    }
@@ -50,12 +53,14 @@ public class Configuration {
          e.printStackTrace();
       }
    }
-
+   
+   @XmlElementWrapper
+   @XmlElement (name = "database", required = true)
    public List<DBconfig> getDatabases() {
       return databases;
    }
    
-   @XmlElement
+   
    public void setDatabases(List<DBconfig> databases) {
       this.databases = databases;
    }   

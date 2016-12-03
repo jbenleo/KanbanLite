@@ -3,32 +3,38 @@ package config;
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement
+@XmlRootElement(name = "database")
 public class DBconfig {
+   
    private String name;
    private String URI;
    private List<View> views;
    
+   @XmlElement
    public String getName() {
       return name;
    }
-   @XmlElement
+   
    public void setName(String name) {
       this.name = name;
    }
+   @XmlElement
    public String getURI() {
       return URI;
    }
-   @XmlElement
+   
    public void setURI(String uRI) {
       URI = uRI;
    }
+   @XmlElementWrapper
+   @XmlElement (name = "view")
    public List<View> getViews() {
       return views;
    }
-   @XmlElement
+   
    public void setViews(List<View> views) {
       this.views = views;
    }

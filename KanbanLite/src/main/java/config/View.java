@@ -3,58 +3,79 @@ package config;
 import java.util.Date;
 
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class View {
-   private String   column;
-   private String[] tag;
-   private String   topic;
+   private String   name;
+   private String[] columns;
+   private String[] tags;
+   private String[] topics;
    private Boolean  completed;
    private Boolean  deadline;
    private Date     timeToDeadline;
    
+   @XmlElementWrapper
+   @XmlElement (name = "column")
+   public String[] getColumns() {
+      return columns;
+   }
    
-   public String getColumn() {
-      return column;
+   public void setColumns(String[] columns) {
+      this.columns = columns;
+   }
+   
+   @XmlElementWrapper
+   @XmlElement ( name = "tag")
+   public String[] getTags() {
+      return tags;
+   }
+   
+   public void setTags(String[] tags) {
+      this.tags = tags;
+   }
+   
+   @XmlElementWrapper
+   @XmlElement ( name = "topic")
+   public String[] getTopics() {
+      return topics;
+   }
+   
+   public void setTopics(String[] topics) {
+      this.topics = topics;
    }
    @XmlElement
-   public void setColumn(String column) {
-      this.column = column;
-   }
-   public String[] getTag() {
-      return tag;
-   }
-   @XmlElement
-   public void setTag(String[] tag) {
-      this.tag = tag;
-   }
-   public String getTopic() {
-      return topic;
-   }
-   @XmlElement
-   public void setTopic(String topic) {
-      this.topic = topic;
-   }
    public Boolean getCompleted() {
       return completed;
    }
-   @XmlElement
+   
    public void setCompleted(Boolean completed) {
       this.completed = completed;
    }
+   @XmlElement
    public Boolean getDeadline() {
       return deadline;
    }
-   @XmlElement
+   
    public void setDeadline(Boolean deadline) {
       this.deadline = deadline;
    }
+   @XmlElement
    public Date getTimeToDeadline() {
       return timeToDeadline;
    }
-   @XmlElement
+   
    public void setTimeToDeadline(Date timeToDeadline) {
       this.timeToDeadline = timeToDeadline;
+   }
+
+   @XmlElement
+   public String getName() {
+      return name;
+   }
+
+   public void setName(String name) {
+      this.name = name;
    }
 }
