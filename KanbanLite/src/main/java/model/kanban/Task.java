@@ -5,16 +5,20 @@ import java.util.Date;
 import java.util.List;
 
 public class Task {
+   private int id;
    private String title = "";
    private String description = "";
    private int priority = 0;
+   /* Topic info. */
+   private int topicId = 0;
    private String topic = "";
    private int color;
+   /* End of topic info*/
    private List<Tag> tags = new ArrayList<Tag>();
    private List<SubTask> subTasks = new ArrayList<SubTask>();
    private String author ="";
    private String resolver ="";
-   private Date creationDate = null;
+   private Date creationDate = new Date();
    private Date completeDate = null;
    private Date deadlineDate = null;
    
@@ -98,5 +102,23 @@ public class Task {
    
    public void addSubTask(SubTask subTask){
       subTasks.add(subTask);
+   }
+   public int getId() {
+      return id;
+   }
+   public void setId(int id) {
+      this.id = id;
+   }
+   public List<SubTask> getSubTasks() {
+      return subTasks;
+   }
+   public void setSubTasks(List<SubTask> subTasks) {
+      this.subTasks = subTasks;
+   }
+   public int getTopicId() {
+      return topicId;
+   }
+   public void setTopicId(int topicId) {
+      this.topicId = topicId;
    }
 }
